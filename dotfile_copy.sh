@@ -1,1 +1,0 @@
-/home/pie/scripts/dotfile_copy
