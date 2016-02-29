@@ -62,6 +62,8 @@ source $ZSH/oh-my-zsh.sh
 
 ## contains aliases and things common to all shells
 source ~/.sh-common
+## enable better colors
+source ~/static/gruvbox/gruvbox_256palette.sh
 
 ## save all history commands
 LASTCOMMAND=
