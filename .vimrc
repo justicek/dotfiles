@@ -13,8 +13,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
-" Plugin 'tpope/vim-fireplace' 
-" Plugin 'tpope/vim-classpath'
+Plugin 'tpope/vim-fireplace' 
+Plugin 'tpope/vim-classpath'
 
 call vundle#end()
 filetype plugin indent on
@@ -48,3 +48,6 @@ set expandtab
 " these remappings work but cause slowdown and force message on vim enter/exit "
 " au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 " au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
+
+" autoclose omnicomplete preview window "
+autocmd CompleteDone * pclose

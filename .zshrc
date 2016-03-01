@@ -54,7 +54,7 @@ plugins=(themes command-not-found dircycle dirhistory git mvn redis-cli screen s
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/share/node:/home/pie/scripts:~/scripts/standards:~/npm-global/bin:~/Downloads/vert.x-3.1.0/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/share/node:/home/pie/scripts:~/scripts/standards:~/npm-global/bin:/home/pie/Downloads/vert.x-3.1.0/bin:/home/pie/static"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 ## oh my zsh
