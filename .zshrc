@@ -29,9 +29,6 @@ plugins=(themes command-not-found dircycle dirhistory git mvn redis-cli screen s
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
@@ -42,11 +39,6 @@ plugins=(themes command-not-found dircycle dirhistory git mvn redis-cli screen s
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -64,6 +56,8 @@ source $ZSH/oh-my-zsh.sh
 source ~/.sh-common
 ## enable better colors
 source ~/static/gruvbox/gruvbox_256palette.sh
+
+setopt AUTO_CD
 
 ## save all history commands
 LASTCOMMAND=
