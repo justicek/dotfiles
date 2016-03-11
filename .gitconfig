@@ -1,6 +1,1 @@
-[user]
-	name = kevin.justice
-	email = kevin.justice@prometheanworld.com
-[core]
-	autocrlf = input
-	editor = vim
+/home/pie/.gitconfig
