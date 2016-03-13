@@ -1,7 +1,8 @@
-portable configuration because setting everything up from scratch sucks
+## dotfiles
+config files for a semi-consistent setup across environments
 
-files still to be added:
-    *  oh-my-zsh config
-    *  scripts
-    *  coloring adjustments
+### files still to be added:
+    *  scripts (possibly separate repo or submodule)
+    *  oh-my-zsh themes
+    *  vim colorscehemes
     *  bash config
