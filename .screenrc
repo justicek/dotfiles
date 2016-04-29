@@ -1,1 +1,6 @@
-/home/pie/.screenrc
+TERM=screen
+
+termcapinfo xterm*|screen* ti@:te@
+
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'

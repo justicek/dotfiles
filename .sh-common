@@ -1,1 +1,2 @@
-/home/pie/.sh-common
+source ~/.aliases
+bindkey -v
