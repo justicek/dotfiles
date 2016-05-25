@@ -28,7 +28,7 @@ syntax enable
 colorscheme gruvbox 
 set bg=dark
 
-" <F4> to toggle search highlighting
+" <F4> to toggle search highlighting "
 set incsearch
 nmap <F4> :set hls! <cr>
 nnoremap / :set hlsearch<cr>/
@@ -46,7 +46,7 @@ set expandtab
 
 " key bindings / command binding "
 
-" /l for toggling visible characters
+" /l for toggling visible characters "
 nmap <leader>l :set list!<CR>
 " use better keys for tabs and EOLs
 set listchars=tab:▸\ ,eol:¬
@@ -55,7 +55,7 @@ set listchars=tab:▸\ ,eol:¬
 " au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 " au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
-" relative line number
+" relative line number "
 set relativenumber
 
 " always show line numbers, but only in current window "
