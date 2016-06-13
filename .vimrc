@@ -28,6 +28,9 @@ syntax enable
 colorscheme gruvbox 
 set bg=dark
 
+" allow window transparency in gruv "
+hi Normal ctermbg=none
+
 " <F4> to toggle search highlighting "
 set incsearch
 nmap <F4> :set hls! <cr>
