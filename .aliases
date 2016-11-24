@@ -1,4 +1,5 @@
-alias rm='rm -v'
+## aliases
+alias rmv='rm -v'
 alias rmi='rm -i'
 alias cpv='cp -v'
 alias cls='clear'
@@ -6,20 +7,18 @@ alias lsl='ls -lhA'
 alias lst='-ls -lrt'
 alias cfs='gulp server --vagrant 8080'
 alias gst='git status'
-alias stsh='stash_show.sh $1'
+alias gfr='git fetch; git rebase'
 alias stap='stash_apply.sh $1'
-alias stli='git stash list | head -n $1'
+alias stli='git stash list | head'
+alias stlin='git stash list | head -n $1'
 alias glog='git log --author kevin.justice'
-alias sshdev='ssh kjustice@chef-server.prometheanjira.com'
 alias sshjump='ssh kjustice@javadevjumpbox.prometheanjira.com'
-alias wcc='cat $1 | wc -m'
-alias wcl='cat $1 | wc -l'
 alias unstage='git reset HEAD^'
 alias sqlcmd='mysql -u root -proot -D activfoundation -e $1'
 alias col_diff='grep -vFf $1 $2'
 alias xmod='chmod +x $1'
 alias myip='curl https://wtfismyip.com/text'
-alias taglog='git log --tags --simplify-by-decoration --pretty="format:%ci %d"'
+alias gtl='git log --tags --simplify-by-decoration --pretty="format:%ci %d"'
 alias .z='source ~/.zshrc'
 alias .b='source /etc/bash.bashrc'
 alias zed='vim ~/.zshrc'
@@ -29,10 +28,10 @@ alias emacsmode='bindkey -e'
 alias vali='vim ~/.aliases'
 alias cali='cat ~/.aliases'
 alias gali='cat ~/.aliases | grep'
-alias calc='echo $1 | bc'
-alias reattach='screen -d -r'
-alias sget='sudo apt-get install $1'
+alias sdr='screen -DR $1'
+alias sls='screen -list'
 alias tm='tmux -2'
+alias tms='tmux-session restore'
 alias j='jobs -l'
 alias dop='nemo "$1" &'
 alias sqllog_on='sqlcmd "set global general_log = TRUE"'
@@ -40,6 +39,22 @@ alias sqllog_off='sqlcmd "set global general_log = FALSE"'
 alias sqltail='sudo tail -f /var/lib/mysql/pie-Precision-M4700.log'
 alias ack='ack-grep'
 alias sup='su -p'
-alias mgl='git log --author=kevin.justice'
+alias mgl='git log --author=kevin.justice --stat --color'
 alias ci='clipit'
+alias sftpserver='/usr/lib/openssh/sftp-server'
 alias manhelp='man man | grep -e "type exactly as shown" -A5 --color=NEVER'
+
+# chinese content utilities
+alias ch_uza='for f in ./*.ppt*; do unzip -l $f; done;'
+alias ch_cpa='cp ./*.ppt* /sftp/john/incoming'
+alias ch_rma='rm ./*.ppt*'
+
+## functions
+function logrep() { grep "$1" ~/.logs/commands.log }
+function wcc() { cat "$1" | wc -m }
+function wcl() { cat "$1" | wc -l }
+function calc() { echo "$1" | bc }
+function stsh() {
+    stash_num="$1"; shift
+    git stash show stash@{${stash_num}} $@
+}

@@ -1,2 +1,4 @@
 source ~/.aliases
+source ~/.functions
+
 bindkey -v
