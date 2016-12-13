@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# lm - local mysql
+#   quickly connect to local mysql db with the given schema
+#
+# usage:  
+#         lm [schema]
+# params:
+#         - schema (optional) - schema to connect with
+#               * af (activfoundation) [default]
+#               * fc (foundationconfig)
+#               * as (authserver)
+#               * ps (parentservice)
+# exit codes:
+#         - 0: success
+#         - 1: failure - invalid input data (unsupported schema) 
+#         - 1: failure - invalid input format (unsupported number of args) 
+
+
+# init vars
+schema="$1"
+database="activfoundation"
+username="root"
+password="root"
+opt_flags="--auto-vertical-output" # adjust this to your preference
+
+# print available schema options
+print_schemas () {
+   echo "supported schemas:"
+   echo "  af (activfoundation), fc (foundationconfig), as (authsever), ps (parentservice)"
+}
+
+# connect to the local db
+connect () {
+    echo -e "[lm] connecting locally to schema ${database} ...\n"
+    mysql ${opt_flags} -u ${username} -p ${password} ${database}
+}
+
+# check input args, printing usage message if not correct
+if [ $# -gt 1 ]; then
+   echo -e "usage:\n  $0 [schema]"
+   exit 2
+fi
+
+# connect to af and exit if no schema provided
+if [ $# -eq 0 ]; then
+    connect
+    exit 0
+fi
+
+# set up connection vars based on schema choice
+case ${schema} in
+    af)
+        database="activfoundation"
+        ;;
+    fc)
+        database="foundationconfig"
+        ;;
+    as)
+        database="authserver"
+        ;;
+    ps)
+        database="parentservice"
+        ;;
+    *)  
+        # schema not supported so print error message
+        print_schemas 
+        exit 1
+        ;;
+esac
+
+# finish by connecting to the db with specified schema
+connect
+
+exit 0

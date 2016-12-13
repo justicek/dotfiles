@@ -1,0 +1,49 @@
+#!/bin/bash
+
+## lb - utility to facilitate easy liquibase operations
+##     args:
+##          - schema: schema/database to update - all, af, fc, ps, as, ana, tdw
+##          - operation: liquibase operation - u (update), d (dropAll), du (dropAll -> update)
+##     notes:
+##          - cd to your ddl directory before running
+
+## maven profiles
+declare -A profiles=( [af]="-Plocal" [fc]="-PlocalFoundationConfig" [ps]="-PlocalParentService" [as]="-PlocalAuthServer" [ana]="-PlocalAnalytics" [tdw]="-PlocalDatawarehouse" )
+
+## usage instructions ##
+print_usage_msg() {
+    echo "Usage: $0 [schema] [operation]"
+    echo "   schema: all (all schemas) | af (activfoundation) | fc (foundationconfig) | ps (parentservice) | as (authserver) | ana (analytics) | tdw ([the]datawarehouse)"
+    echo "   operation: u (update) | d (dropAll) | du (dropAll and update)"
+}
+
+## run the liquibase operation ($1) on the profile with given schema key ($2)
+lb_op() {
+    echo -e "... attempting operation '$1' on schema '$2' ...\n"
+    case $1 in
+        u) mvn ${profiles[$2]} process-resources liquibase:update ;;
+        d) mvn ${profiles[$2]} process-resources liquibase:dropAll ;;
+        du) mvn ${profiles[$2]} process-resources liquibase:dropAll liquibase:update ;;
+        *) echo "error: choose from operations: u (update) | d (dropAll) | du (dropAll -> update)" ;;
+    esac
+}
+
+# check params
+if [ $# -lt 1 -o $# -gt 2 -o "$1" = "--help" ]; then
+    print_usage_msg
+    exit 1
+fi
+
+schema="$1"
+operation="$2"
+
+# run operation on all schemas
+if [ "${schema}" = "all" ]; then
+    for profile in "${!profiles[@]}"; do
+        lb_op "${operation}" "${profile}"
+    done
+else # run operation on one schema
+    lb_op "${operation}" "${schema}"
+fi
+
+exit 0

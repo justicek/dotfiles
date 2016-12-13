@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# help_refcode_extractor - help set up refcode seed without manually pulling
+#   and setting ids for 120-something help video rows
+
+if [ $# -ne 1 ]; then
+    echo "usage: $0: <help.csv input file>"
+    exit 1
+fi
+
+# only split on newlines
+IFS=$'\n'
+
+print_line() {
+    # id, ref_type_id, name, description, shortname, sort_seq, active, code, <audit fields>
+    echo "\"$1\",\"c6a60f09fc434a0eb77ad95dae50cb4d\",\"$2\",\"$2\",\"$2\",0,1,\"$2\",\"Default User\",\"2016-07-28 16:39:06\",\"Default User\",\"2016-07-28 16:39:06\""
+}
+
+lines="$(< $1)"
+
+for line in $lines; do
+    # echo "aaa line=${line}"
+    description="$(echo ${line} | cut -d, -f5)"
+    # echo "xxx description=${description}"
+    guid="$(uuidgen | sed 's/-//g')"
+    # echo "yyy guidgen=${guidgen}"
+    print_line "$guid" "$description"
+done
+
+exit 0
